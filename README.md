@@ -1,6 +1,6 @@
 # Agentic Pipelines for Digital Humanities
 
-Three beginner-friendly notebooks for teaching the OpenAI Agents SDK to master's students in digital humanities.
+Three beginner-friendly notebooks for teaching the OpenAI Agents SDK in digital humanities.
 
 The notebooks are fully runnable with the OpenAI Agents SDK, and include short setup notes where needed for local use and Google Colab.
 
@@ -57,7 +57,7 @@ The notebooks load `.env` automatically when run locally.
 
 ## Google Colab
 
-Use Colab if you want students to start without local setup.
+Use Colab if you want readers to start without local setup.
 
 1. Create a new notebook in Google Colab.
 2. Run:
