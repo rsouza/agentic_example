@@ -19,6 +19,7 @@ dependencies = [
     { name = "jupyterlab" },
     { name = "openai-agents" },
     { name = "pandas" },
+    { name = "python-dotenv" },
 ]
 
 [package.metadata]
@@ -27,6 +28,7 @@ requires-dist = [
     { name = "jupyterlab" },
     { name = "openai-agents" },
     { name = "pandas" },
+    { name = "python-dotenv" },
 ]
 
 [package.metadata.requires-dev]

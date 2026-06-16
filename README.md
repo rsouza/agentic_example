@@ -47,6 +47,14 @@ If you want to isolate notebook kernels, you can also register the environment:
 uv run python -m ipykernel install --user --name agentic-example
 ```
 
+## Local API key
+
+1. Copy `.env.example` to `.env`.
+2. Add your `OPENAI_API_KEY` value to `.env`.
+3. Reopen the notebook or restart the kernel.
+
+The notebooks load `.env` automatically when run locally.
+
 ## Google Colab
 
 Use Colab if you want students to start without local setup.
