@@ -1,22 +1,32 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from pathlib import Path
+
+
+NOTEBOOK_DIR = Path(__file__).resolve().parent
+DATA_DIR = NOTEBOOK_DIR.parent / "data"
+
+
+def _read_text(filename: str) -> str:
+    return (DATA_DIR / filename).read_text(encoding="utf-8").strip()
+
 
 LETTER_TEXTS = [
     {
         "id": 1,
         "title": "Letter from Madrid, 1871",
-        "text": "In 1871, Maria Gomez wrote from Madrid to her brother in Valencia about the exhibition and the costs of travel.",
+        "text": _read_text("letter_01_madrid_1871.txt"),
     },
     {
         "id": 2,
         "title": "Printing House Notice, 1894",
-        "text": "The printer in Seville announced a new edition of poems by Antonio Ruiz and asked readers to send subscriptions.",
+        "text": _read_text("letter_02_seville_1894.txt"),
     },
     {
         "id": 3,
         "title": "OCR Fragment",
-        "text": "Madrld, 1871. Ma^ria Go'mez wrofe to her brotner about the exhlbition.",
+        "text": _read_text("letter_03_ocr_fragment.txt"),
     },
 ]
 
