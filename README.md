@@ -1,6 +1,6 @@
 # Agentic Pipelines for Digital Humanities
 
-Three beginner-friendly notebooks for teaching the OpenAI Agents SDK in digital humanities.
+Four beginner-friendly notebooks for teaching the OpenAI Agents SDK in digital humanities.
 
 The notebooks are fully runnable with the OpenAI Agents SDK, and include short setup notes where needed for local use and Google Colab.
 
@@ -23,6 +23,12 @@ The notebooks are fully runnable with the OpenAI Agents SDK, and include short s
    - Confidence and uncertainty
    - Human review checkpoints
    - Final export for archival or classroom use
+
+4. `notebooks/04_end_to_end_pipeline.ipynb`
+   - Single-agent extraction
+   - Agents as tools
+   - Handoffs
+   - Guardrails in one workflow
 
 ## Suggested extra concepts
 
