@@ -2,7 +2,7 @@
 
 Three beginner-friendly notebooks for teaching the OpenAI Agents SDK to master's students in digital humanities.
 
-The notebooks use a mix of executable Python and SDK pseudocode so you can teach the concepts first, then fill in API details live.
+The notebooks are fully runnable with the OpenAI Agents SDK, and include short setup notes where needed for local use and Google Colab.
 
 ## What the notebooks cover
 
