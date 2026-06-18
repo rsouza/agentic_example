@@ -1,0 +1,25 @@
+name: Test notebooks
+
+# Triggered manually from the GitHub Actions tab.
+# Requires OPENAI_API_KEY to be set as a repository secret.
+# Run this before merging changes that touch notebooks or data files.
+on:
+  workflow_dispatch:
+
+jobs:
+  test-notebooks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        run: pip install uv
+
+      - name: Install dependencies
+        run: uv sync --group dev
+
+      - name: Run notebooks
+        run: uv run pytest --nbmake notebooks/ -v
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
