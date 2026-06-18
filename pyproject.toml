@@ -8,6 +8,7 @@ dependencies = [
   "openai-agents",
   "jupyterlab",
   "ipykernel",
+  "ipywidgets",
   "pandas",
   "python-dotenv",
 ]
@@ -15,4 +16,8 @@ dependencies = [
 [tool.uv]
 
 [dependency-groups]
-dev = []
+dev = [
+  "pytest",
+  "nbmake",
+  "pytest-asyncio",
+]
