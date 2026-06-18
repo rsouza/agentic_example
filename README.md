@@ -75,12 +75,21 @@ The notebooks load `.env` automatically when run locally.
 !pip install openai-agents pandas jupyterlab ipykernel ipywidgets
 ```
 
-3. Set your API key:
+3. Set your API key using **Colab Secrets** (recommended):
+   - Click the key icon in the left sidebar (or go to **Tools → Secrets**).
+   - Add a secret named `OPENAI_API_KEY` with your key as the value.
+   - Enable notebook access for that secret.
+   - Load it in a code cell:
 
 ```python
+from google.colab import userdata
 import os
-os.environ["OPENAI_API_KEY"] = "YOUR_KEY"
+os.environ["OPENAI_API_KEY"] = userdata.get("OPENAI_API_KEY")
 ```
+
+   Using Secrets keeps your key out of the notebook file and out of version control.
+   Never paste a live API key directly into a cell — Colab autosaves notebooks and
+   the key would be stored in plain text.
 
 4. Open the notebook files in the `notebooks/` folder and run cells top to bottom.
 
