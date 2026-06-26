@@ -1,7 +1,0 @@
-# Hugging Face Spaces requirements (local-model deployment path)
-# This file is separate from notebook dependencies on purpose.
-
-gradio>=4.44.0
-transformers>=4.44.0
-torch>=2.3.0
-python-dotenv>=1.0.1

@@ -116,8 +116,9 @@ The following topics are not yet covered and are candidates for future notebooks
 - Embedding-based retrieval (notebook 06 covers keyword search; semantic search is the next step)
 - Wikidata SPARQL enrichment (mentioned in notebook 06 discussion as an advanced topic)
 - Persistent storage and database-backed state (notebook 07 covers in-memory; SQLite is the next step)
+- **Local models without an API key** (candidate: `08_local_models.ipynb`) — run the same extraction pipeline using a local Hugging Face model (e.g. `Qwen/Qwen2.5-1.5B-Instruct`) via `transformers`. The notebook should teach the agent-to-local-model substitution pattern: same `Extraction` dataclass and guardrail logic, but `Runner.run()` replaced by a `transformers` pipeline call. Gradio or a simple CLI loop would serve as the HITL interface. This makes the repo usable in air-gapped or cost-sensitive environments.
 
-If you add a notebook covering one of these, name it `05_<topic>.ipynb` and follow the same pedagogical structure: concept explanation → minimal code → working example → exercise prompt.
+If you add a notebook covering one of these, name it with the next sequential number and follow the same pedagogical structure: concept explanation → minimal code → working example → exercise prompt.
 
 ---
 
