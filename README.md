@@ -72,7 +72,7 @@ The notebooks load `.env` automatically when run locally.
 ```python
 !git clone https://github.com/<your-user>/agentic_example.git
 %cd agentic_example
-!pip install openai-agents pandas jupyterlab ipykernel ipywidgets
+!pip install openai-agents pandas jupyterlab ipykernel
 ```
 
 3. Set your API key using **Colab Secrets** (recommended):

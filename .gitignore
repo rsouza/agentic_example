@@ -5,3 +5,7 @@ __pycache__/
 *.pyc
 .DS_Store
 .env
+.omo/
+.claude/
+* - mrbi143845.*
+* - mrbi143845_

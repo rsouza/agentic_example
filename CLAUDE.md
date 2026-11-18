@@ -64,6 +64,8 @@ DEFAULT_MODEL = "gpt-5.4-mini"
 | Handoff | Notebook 2 | `handoff(target_agent, tool_name_override='transfer_to_X')` |
 | Input guardrail | Notebook 3 | `InputGuardrail(fn, name='')` + `GuardrailFunctionOutput(tripwire_triggered=bool)` |
 | Guardrail exception | Notebooks 3–4 | `except InputGuardrailTripwireTriggered` wraps `Runner.run()` |
+| Output guardrail | Notebooks 3–4 | `OutputGuardrail` validates what the agent produces |
+| Human-in-the-loop | Notebooks 3–4 | `input()` on stdin (not ipywidgets; unreliable in VS Code); `EOFError` falls back to archive so CI runs |
 | Tracing | All | `with trace('label'):` around Runner.run() calls |
 
 ### Async convention
@@ -118,21 +120,24 @@ The following topics are not yet covered and are candidates for future notebooks
 - Persistent storage and database-backed state (notebook 07 covers in-memory; SQLite is the next step)
 - **Local models without an API key** (candidate: `08_local_models.ipynb`) — run the same extraction pipeline using a local Hugging Face model (e.g. `Qwen/Qwen2.5-1.5B-Instruct`) via `transformers`. The notebook should teach the agent-to-local-model substitution pattern: same `Extraction` dataclass and guardrail logic, but `Runner.run()` replaced by a `transformers` pipeline call. Gradio or a simple CLI loop would serve as the HITL interface. This makes the repo usable in air-gapped or cost-sensitive environments.
 
-If you add a notebook covering one of these, name it with the next sequential number and follow the same pedagogical structure: concept explanation → minimal code → working example → exercise prompt.
+If you add a notebook covering one of these, name it with the next sequential number (e.g. `08_<topic>.ipynb`) and follow the same pedagogical structure: concept explanation → minimal code → working example → exercise prompt.
 
 ---
 
 ## Data
 
-The three `data/` files are designed as a minimal but illustrative set:
+The six `data/` files are a minimal but illustrative set:
 
 | File | Purpose |
 |---|---|
 | `letter_01_madrid_1871.txt` | Clean letter; straightforward extraction |
 | `letter_02_seville_1894.txt` | Clean letter; different domain (publishing) |
 | `letter_03_ocr_fragment.txt` | Deliberately noisy (OCR artifacts, ambiguous text); triggers guardrails |
+| `letter_04_barcelona_1902.txt` | Clean letter; library/institution domain |
+| `letter_05_porto_1888.txt` | Clean letter; cross-country correspondence |
+| `letter_06_ocr_table.txt` | Noisy subscriber table; non-letter format |
 
-`data.zip` bundles all three for Colab workflows. Keep both in sync when adding new data files.
+`data.zip` bundles all six for Colab workflows. Keep both in sync when adding new data files.
 
 If you add new data, use realistic historical text and include at least one noisy/ambiguous example to demonstrate guardrail behavior.
 
@@ -155,23 +160,9 @@ Keep cells short. Prefer multiple focused cells over one long cell.
 
 ## Key enhancement opportunities (diagnostic)
 
-The following gaps have been identified and are candidates for future work:
+Output guardrails, interactive HITL (stdin `input()`), evaluation (05), retrieval (06), state management (07), extra data, dev dependencies and CI are all done. Remaining gaps:
 
-### High priority
-- **No output guardrails**: Notebook 3 only shows input guardrails. Output guardrails (validating what the agent produces) are a natural next step and a gap in the teaching narrative.
-- **Simulated human review**: The `human_review()` function in notebooks 3–4 prints a message but does not pause for real input. A real interactive checkpoint (e.g., `input()` prompt or a Jupyter widget) would make the HITL concept tangible.
 - **No retry or error handling**: Agent calls have no retry logic for transient API errors. A brief example of wrapping `Runner.run()` with exponential backoff would improve robustness.
-
-### Medium priority
-- **Evaluation harness**: No notebook demonstrates how to measure extraction quality (precision/recall against a gold standard). This is critical for production DH work.
-- **RAG over documents**: The README lists retrieval as a suggested concept but no notebook covers it. A notebook showing how to build a simple file-based retrieval tool would extend the single-agent pattern naturally.
-- **More data variety**: The three sample letters are short and cover a narrow domain. Adding 2–3 more examples (different languages, different time periods, different document types) would make the demos more robust.
-- **Notebook 5 (state management)**: A notebook showing how to pass context across multiple agent runs (e.g., maintaining a running extraction register) would close the curriculum gap on state.
-
-### Low priority
-- **pyproject.toml dev dependencies**: The `[dependency-groups] dev = []` section is empty. Adding `pytest` and `nbval` (for notebook testing) would enable CI validation.
-- **No CI**: No GitHub Actions workflow exists. A simple workflow that runs `jupyter nbconvert --execute` on each notebook would catch broken imports or API changes early.
-- **README doesn't mention the DH domain upfront**: The first paragraph could name the use case (historical letter analysis) to set expectations immediately.
 
 ---
 

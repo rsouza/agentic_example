@@ -5,10 +5,9 @@ description = "Teaching notebooks for agentic pipelines in digital humanities"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
-  "openai-agents",
+  "openai-agents>=0.17",
   "jupyterlab",
   "ipykernel",
-  "ipywidgets",
   "pandas",
   "python-dotenv",
 ]
